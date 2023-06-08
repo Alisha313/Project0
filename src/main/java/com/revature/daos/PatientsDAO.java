@@ -29,12 +29,12 @@ public class PatientsDAO implements PatientsDAOInterface{
                         rs.getInt("patient_id"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
-                        rs.getDate("date_of_birth"),
+                        rs.getString("date_of_birth"),
                         rs.getString("reason_of_visit"),
                         rs.getString("patient_gender"),
                         dDAO.getDoctorById(rs.getInt("doctor_id_fk"))
                 );
-
+                System.out.println(patient);
                 patientList.add(patient);
 
             }
@@ -56,13 +56,13 @@ public class PatientsDAO implements PatientsDAOInterface{
 
         try(Connection conn = ConnectionUtil.getConnection()) {
 
-            String sql = "INSERT INTO patients (first_name, last_name, date_of_birth, reason_of_visit, patient_gender, doctor__id_fk) VALUES (?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO patients (first_name, last_name, date_of_birth, reason_of_visit, patient_gender, doctor_id_fk) VALUES (?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, p.getFirst_name());
             ps.setString(2, p.getLast_name());
-            ps.setDate(3, (Date) p.getDate_of_birth());
+            ps.setString(3,  p.getDate_of_birth());
             ps.setString(4, p.getReason_of_visit());
             ps.setString(5, p.getPatient_gender());
             ps.setInt(6, p.getDoctor_id_fk());

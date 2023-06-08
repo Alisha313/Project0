@@ -17,7 +17,7 @@ public class DoctorsDAO implements DoctorsDAOInterface{
 
         try(Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "SELECT * FROM doctor WHERE doctor_id = ?";
+            String sql = "SELECT * FROM doctors WHERE doctor_id = ?";
 
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -56,15 +56,13 @@ public class DoctorsDAO implements DoctorsDAOInterface{
 
         try(Connection conn = ConnectionUtil.getConnection()){
 
-            String sql = "UPDATE doctor SET doctor_salary = ? where doctor_title = ? AND doctor_specialty" ;
+            String sql = "UPDATE doctors SET doctor_salary = ? where doctor_title = ?";
 
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, title);
             ps.setInt(2, salary);
-            String specialty = new String();
-            ps.setString(3, specialty);
 
             ps.executeUpdate();
 

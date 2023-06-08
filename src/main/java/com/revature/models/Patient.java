@@ -7,13 +7,25 @@ public class Patient {
     private int patient_id;
     private String first_name;
     private String last_name;
-    private Date date_of_birth;
+    private String date_of_birth;
     private String reason_of_visit;
     private String patient_gender;
     private int doctor_id_fk;
 
+    private Doctor doctor;
 
-    public Patient(int patient_id, String first_name, String last_name, Date date_of_birth, String reason_of_visit, String patient_gender, int doctor_id_fk) {
+
+    public Patient(int patient_id, String first_name, String last_name, String date_of_birth, String reason_of_visit, String patient_gender, Doctor doctor) {
+        this.patient_id = patient_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.date_of_birth = date_of_birth;
+        this.reason_of_visit = reason_of_visit;
+        this.patient_gender = patient_gender;
+        this.doctor = doctor;
+    }
+
+    public Patient(int patient_id, String first_name, String last_name, String date_of_birth, String reason_of_visit, String patient_gender, int doctor_id_fk) {
         this.patient_id = patient_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -27,7 +39,15 @@ public class Patient {
         
     }
 
-    public Patient(int patientId, String firstName, String lastName, java.sql.Date dateOfBirth, String reason_of_visit, String patient_gender, Doctor doctorIdFk) {
+
+
+    public Patient(String first_name, String last_name, String date_of_birth, String reason_of_visit, String patient_gender, int doctor_id_fk) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.date_of_birth = date_of_birth;
+        this.reason_of_visit = reason_of_visit;
+        this.patient_gender = patient_gender;
+        this.doctor_id_fk = doctor_id_fk;
     }
 
     public String getFirst_name() {
@@ -49,12 +69,12 @@ public class Patient {
         this.last_name = last_name;
     }
 
-    public Date getDate_of_birth() {
+    public String getDate_of_birth() {
 
         return date_of_birth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(String date_of_birth) {
 
         this.date_of_birth = date_of_birth;
     }

@@ -27,7 +27,7 @@ public class Launcher {
 
         PatientsDAO pDAO = new PatientsDAO();
 
-        Patient John = new Patient();
+        Patient John = new Patient("John", "Doe", "1990-06-03", "Heart check-up", "M", 1);
 
         System.out.println(pDAO.insertPatient(John));
 
