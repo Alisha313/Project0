@@ -21,12 +21,9 @@ public class Launcher {
         }
 
         DoctorsDAO dDAO = new DoctorsDAO();
-
-        System.out.println(dDAO.updateDoctorSpecialty());
         System.out.println(dDAO.getDoctorsById());
 
         PatientsDAO pDAO = new PatientsDAO();
-
         Patient John = new Patient("John", "Doe", "1990-06-03", "Heart check-up", "M", 1);
 
         System.out.println(pDAO.insertPatient(John));

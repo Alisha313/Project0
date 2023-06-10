@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
 import com.revature.models.Doctor;
-import com.revature.service.DoctorsService;;
+import com.revature.service.DoctorsService;
 import io.javalin.http.Context;
 
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class DoctorsController {
             ctx.status(400);
             return;
         }
-
 
         Doctor doc = DoctorsService.getDoctorById(id);
         if (doc != null){
@@ -48,29 +47,32 @@ public class DoctorsController {
         }
     }
 
-    public static void updateDoctors(Context ctx){
+    public static void updateDoctorsSalary(Context ctx){
 
-        Doctor submittedDoctors = ctx.bodyAsClass(Doctor.class);
-
-        boolean updateSuccessful = doctorsService.updateSalary(submittedDoctors.getDoctor_salary(),
-                submittedDoctors.getDoctor_id(),
-                submittedDoctors.getDoctor_specialty(),
-                submittedDoctors.getDoctor_title());
-
-        if (updateSuccessful){
+        Doctor submittedDoctor  = ctx.bodyAsClass(Doctor.class);
+        Doctor updateSuccessful = DoctorsService.updateDoctorsSalary(submittedDoctor);
+        if (updateSuccessful != null){
             ctx.status(200);
+            ctx.json(updateSuccessful);
         } else{
             ctx.status(400);
         }
     }
 
     public static void deleteDoctors(Context ctx){
+        int id;
         try{
-            doctorsService.deleteDoctor();
-            ctx.status(204);
+            id = Integer.parseInt(ctx.pathParam("id"));
         } catch (NumberFormatException e) {
             ctx.status(400).result("Invalid doctor ID.");
+            return ;
         }
-
+         if (id > 0) {
+             doctorsService.deleteDoctor(id);
+             ctx.status(204);
+         } else {
+             ctx.status(400);
+         }
     }
+
 }

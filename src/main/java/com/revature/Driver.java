@@ -8,7 +8,7 @@ public class Driver {
 
         JavalinAppConfig app = new JavalinAppConfig();
 
-        app.start(8080);
+        app.start(8443);
 
     }
 

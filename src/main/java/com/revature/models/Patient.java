@@ -1,7 +1,5 @@
 package com.revature.models;
 
-import java.util.Date;
-
 public class Patient {
 
     private int patient_id;
@@ -35,11 +33,6 @@ public class Patient {
         this.doctor_id_fk = doctor_id_fk;
     }
 
-    public Patient() {
-        
-    }
-
-
 
     public Patient(String first_name, String last_name, String date_of_birth, String reason_of_visit, String patient_gender, int doctor_id_fk) {
         this.first_name = first_name;
@@ -48,6 +41,14 @@ public class Patient {
         this.reason_of_visit = reason_of_visit;
         this.patient_gender = patient_gender;
         this.doctor_id_fk = doctor_id_fk;
+    }
+
+    public int getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(int patient_id) {
+        this.patient_id = patient_id;
     }
 
     public String getFirst_name() {
@@ -121,5 +122,6 @@ public class Patient {
                 ", doctor_id_fk=" + doctor_id_fk +
                 '}';
     }
+
 }
 

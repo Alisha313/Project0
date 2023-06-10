@@ -14,14 +14,11 @@ public class Doctor {
         this.doctor_salary = doctor_salary;
     }
 
-    public Doctor() {
-
+    public Doctor(String doctor_title, String doctor_specialty, int doctor_salary) {
+        this.doctor_title = doctor_title;
+        this.doctor_specialty = doctor_specialty;
+        this.doctor_salary = doctor_salary;
     }
-
-
-    public Doctor(int doctorId, String doctorTitle, int doctorSalary, String doctorSpecialty) {
-    }
-
 
     public int getDoctor_id() {
 
@@ -63,7 +60,6 @@ public class Doctor {
         this.doctor_salary = doctor_salary;
     }
 
-    //toString() lets us print out our objects in String form (instead of memory address)
     @Override
     public String toString() {
         return "Doctor{" +
@@ -72,5 +68,8 @@ public class Doctor {
                 ", doctor_specialty='" + doctor_specialty + '\'' +
                 ", doctor_salary=" + doctor_salary +
                 '}';
+    }
+
+    public void setSalary(double newSalary) {
     }
 }

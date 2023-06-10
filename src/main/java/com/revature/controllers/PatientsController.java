@@ -1,6 +1,5 @@
 package com.revature.controllers;
 
-
 import com.revature.models.Patient;
 import com.revature.service.PatientsService;
 import io.javalin.http.Context;
@@ -38,7 +37,6 @@ public class PatientsController {
             return;
         }
 
-
         Patient patient = PatientsService.getPatientById();
         if (patient != null){
             ctx.status(200);
@@ -48,23 +46,32 @@ public class PatientsController {
         }
     }
 
-    public static void updatePatients(Context ctx){
+    public static void updatePatientReasonOfVisit(Context ctx){
 
-        boolean updateSuccessful = patientsService.updatePatientId();
+        Patient submittedPatient  = ctx.bodyAsClass(Patient.class);
+        Patient updateSuccessful = patientsService.updatePatientReasonOfVisit(submittedPatient);
 
-        if (updateSuccessful){
+        if (updateSuccessful != null){
             ctx.status(200);
+            ctx.json(submittedPatient);
         } else{
             ctx.status(400);
         }
     }
 
     public static void deletePatients(Context ctx){
+        int id;
         try {
-            patientsService.deletePatient();
-            ctx.status(204);
+            id = Integer.parseInt(ctx.pathParam("id"));
         } catch (NumberFormatException e) {
             ctx.status(400).result("Invalid patient ID.");
+            return ;
+        }
+        if (id > 0) {
+            patientsService.deletePatient(id);
+            ctx.status(204);
+        } else {
+            ctx.status(400);
         }
     }
 

@@ -31,22 +31,22 @@ public class JavalinAppConfig {
     private Javalin app = Javalin.create(config -> config.jsonMapper(gsonMapper))
 
             .routes(() -> {
-                path("Patients", () -> {
+                path("patients", () -> {
                     get(PatientsController::getAllPatients);
                     post(PatientsController::insertPatients);
-                    put(PatientsController::updatePatients);
-                    delete(PatientsController::deletePatients);
+                    put(PatientsController::updatePatientReasonOfVisit);
                     path("{id}", () -> {
                         get(PatientsController::getPatientsById);
+                        delete(PatientsController::deletePatients);
                     });
                 });
-                path("Doctors", () -> {
+                path("doctors", () -> {
                     get(DoctorsController::getAllDoctors);
                     post(DoctorsController::insertDoctors);
-                    put(DoctorsController::updateDoctors);
-                    delete(DoctorsController::deleteDoctors);
+                    put(DoctorsController::updateDoctorsSalary);
                     path("{id}", () -> {
                         get(DoctorsController::getDoctorsById);
+                        delete(DoctorsController::deleteDoctors);
                     });
                 });
             });
